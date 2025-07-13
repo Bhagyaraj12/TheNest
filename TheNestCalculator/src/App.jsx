@@ -36,45 +36,55 @@ function App() {
       templateParams,
       "KyEK44oIdVfz1UTxB"
     );
-  };
 
-  const handleWhatsApp = () => {
-    const message = `Hello ${name},\n\nYour estimate from The Nest Interior Hub:\n\nType: ${type}\nArea: ${area} sqft\nQuality: ${quality}\nEstimated Cost: ₹${cost.toLocaleString("en-IN")}`;
-    const whatsappURL = `https://wa.me/919676444998?text=${encodeURIComponent(message)}`;
+    const message = `Hello ${name},%0A%0AYour interior estimate from The Nest Interior Hub:%0AType: ${type}%0AArea: ${area} sqft%0AQuality: ${quality}%0AEstimated Cost: ₹${estimate.toLocaleString("en-IN")}`;
+    const whatsappURL = `https://wa.me/919676444998?text=${message}`;
     window.open(whatsappURL, "_blank");
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: '12px' }}>
-      <h2 style={{ marginBottom: '1rem' }}>Interior Cost Calculator</h2>
+    <div style={{
+      maxWidth: 600,
+      margin: '3rem auto',
+      padding: '2rem',
+      borderRadius: '12px',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      border: '1px solid #e5e7eb'
+    }}>
+      <h2 style={{ marginBottom: '1rem', color: '#4f46e5', textAlign: 'center' }}>
+        Interior Cost Calculator
+      </h2>
 
-      <input placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} style={{ width: '100%', marginBottom: '10px' }} />
-      <input type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} style={{ width: '100%', marginBottom: '10px' }} />
-      <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} style={{ width: '100%', marginBottom: '10px' }} />
+      <input placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} 
+        style={{ width: '100%', marginBottom: '10px', padding: '10px', borderRadius: '8px', border: '1px solid #d1d5db' }} />
+      <input type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} 
+        style={{ width: '100%', marginBottom: '10px', padding: '10px', borderRadius: '8px', border: '1px solid #d1d5db' }} />
+      <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} 
+        style={{ width: '100%', marginBottom: '10px', padding: '10px', borderRadius: '8px', border: '1px solid #d1d5db' }} />
 
-      <select value={type} onChange={(e) => setType(e.target.value)} style={{ width: '100%', marginBottom: '10px' }}>
+      <select value={type} onChange={(e) => setType(e.target.value)} 
+        style={{ width: '100%', marginBottom: '10px', padding: '10px', borderRadius: '8px', border: '1px solid #d1d5db' }}>
         <option value="1BHK">1BHK</option>
         <option value="2BHK">2BHK</option>
         <option value="3BHK">3BHK</option>
         <option value="Villa">Villa</option>
       </select>
 
-      <input type="number" placeholder="Total Area (sqft)" value={area} onChange={(e) => setArea(+e.target.value)} style={{ width: '100%', marginBottom: '10px' }} />
+      <input type="number" placeholder="Total Area (sqft)" value={area} onChange={(e) => setArea(+e.target.value)} 
+        style={{ width: '100%', marginBottom: '10px', padding: '10px', borderRadius: '8px', border: '1px solid #d1d5db' }} />
 
-      <select value={quality} onChange={(e) => setQuality(e.target.value)} style={{ width: '100%', marginBottom: '10px' }}>
+      <select value={quality} onChange={(e) => setQuality(e.target.value)} 
+        style={{ width: '100%', marginBottom: '10px', padding: '10px', borderRadius: '8px', border: '1px solid #d1d5db' }}>
         <option value="basic">Basic</option>
         <option value="standard">Standard</option>
         <option value="premium">Premium</option>
       </select>
 
-      <button onClick={handleCalculate} style={{ width: '100%', marginTop: '10px' }}>Calculate Cost</button>
-
-      {cost !== null && (
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <div style={{ fontWeight: 'bold' }}>Estimated Cost: ₹{cost.toLocaleString("en-IN")}</div>
-          <button onClick={handleWhatsApp} style={{ marginTop: '10px' }}>Send via WhatsApp</button>
-        </div>
-      )}
+      <button onClick={handleCalculate} 
+        style={{ width: '100%', padding: '12px', backgroundColor: '#4f46e5', color: '#fff', borderRadius: '8px', border: 'none', marginTop: '10px', cursor: 'pointer' }}>
+        Calculate & Send via WhatsApp
+      </button>
     </div>
   );
 }
